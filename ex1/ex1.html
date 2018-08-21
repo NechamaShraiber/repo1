@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+    crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <title>Document</title>
+
+</head>
+<style>
+  body {
+    background: #dde6ec;
+
+  }
+
+  .fontFamily {
+    font-family: monospace;
+
+  }
+
+  h1 {
+    text-align: center;
+    font-family: monospace;
+    font-size: 50px;
+    color: #404040;
+    margin-top: 5%;
+  }
+
+  table {
+    text-align: center;
+    border: 1px solid #555;
+    border-collapse: collapse;
+    width: 300px;
+    margin: 0 auto;
+    background-color: #a2a6b7;
+  }
+
+  td {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #555;
+    cursor: pointer;
+    font-size: 70px;
+    font-family: 'Open Sans', sans-serif;
+    color: #404040;
+
+  }
+
+  button {
+    display: block;
+    margin: 0 auto;
+    border: 2px solid #8B0000;
+    font-size: 40px;
+    background: #b3b3b3;
+    color: #404040;
+    outline: none;
+  }
+
+  button:hover {
+    border-color: #8B0000;
+    background: #019977;
+    color: #BFB8AD;
+    border-radius: 3px;
+
+  }
+
+  #btnPlace {
+    border: 1px solid #555;
+    width: 300px;
+    height: 50px;
+    display: table;
+    margin: 0 auto;
+    padding: 0.5%;
+
+  }
+
+  .animation {
+    animation: fadein 2s;
+  }
+
+  p {
+    font-size: 27px;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+    font-family: monospace;
+    color: #404040;
+    animation: fadein 2s;
+  }
+
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+
+  .mouseHover {
+    background-color: #BEBEBE;
+    border-radius: 2px;
+  }
+
+  .red {
+    color: #FF6347;
+  }
+
+  .btn {
+    margin: 0.5%;
+  }
+</style>
+<script>
+  var Conditions = [
+    (i, j) => i <= j,
+    (i, j) => i == j || i + j == trs.length - 1,
+    (i, j) => i >= j,
+    (i, j) => i == 0 || j == 0 || i == trs.length - 1 || j == trs.length - 1
+  ]
+  let trs;
+  function check(id) {
+    removeColor();
+    trs = document.getElementById("tabla").children[0].children;
+    for (let i = 0; i < trs.length; i++) {
+      let tds = trs[i].children;
+      for (let j = 0; j < tds.length; j++) {
+        if (Conditions[id](i, j))
+          tds[j].style.backgroundColor = '#5bc0de';
+
+
+      }
+
+    }
+
+  }
+
+
+
+  function removeColor() {
+    let tds = document.getElementsByTagName("td");
+    for (let index = 0; index < tds.length; index++) {
+
+      tds[index].style.backgroundColor = 'transparent';
+    }
+
+
+
+
+  }
+</script>
+
+
+<body class='animation'>
+  <h1>Matrix</h1>
+  <div id="btnPlace" class="container">
+    <input type="button" value="upper part" class="col-md-5 btn btn-info" onclick="check(0)">
+    <input type="button" value="diagonals" class="col-md-offset-1 col-md-5 btn btn-info" onclick="check(1)">
+    <input type="button" value="down part" class="col-md-5 btn btn-info" onclick="check(2)">
+    <input type="button" value="border" class="col-md-offset-1 col-md-5 btn btn-info" onclick="check(3)">
+  </div>
+  <br>
+  <table id="tabla">
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+  <br>
+
+
+
+
+</body>
+
+
+</html>
